@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://q82aei4ngti6"]
+
+[ext_resource type="Texture2D" uid="uid://c6p6hdj52cia2" path="res://assets/tilemap_vr1.png" id="1_j4bo7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_j4bo7"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_owrr1"]
+texture = ExtResource("1_j4bo7")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_j4bo7")
+
+[sub_resource type="TileSet" id="TileSet_d4bue"]
+tile_size = Vector2i(32, 32)
+navigation_layer_0/layers = 1
+sources/1 = SubResource("TileSetAtlasSource_owrr1")
+
+[node name="Simplelayer" type="TileMapLayer"]
+tile_set = SubResource("TileSet_d4bue")

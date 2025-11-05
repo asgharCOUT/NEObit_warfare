@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpskdo65vookj"]
+
+[ext_resource type="Script" uid="uid://bq8q1rebngvq8" path="res://building/infantry.gd" id="1_0gdnp"]
+[ext_resource type="Texture2D" uid="uid://cjafiskpx4d6x" path="res://assets/house.png" id="2_spw2d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0gdnp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spw2d"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="Infantry" type="Node2D" groups=["buildings"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_0gdnp")
+
+[node name="house" type="Sprite2D" parent="."]
+texture = ExtResource("2_spw2d")
+
+[node name="view_info" type="Button" parent="."]
+modulate = Color(1, 0, 1, 0)
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="info" type="Node2D" parent="."]
+visible = false
+
+[node name="back_health" type="Panel" parent="info"]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = -5.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0gdnp")
+
+[node name="health_bar" type="Panel" parent="info/back_health"]
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_spw2d")
+
+[node name="sell" type="Button" parent="info"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="view_info" to="." method="_on_view_info_pressed"]
+[connection signal="pressed" from="info/sell" to="." method="_on_sell_pressed"]
