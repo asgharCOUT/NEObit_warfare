@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4cqvdiuomxrm"]
+
+[ext_resource type="Script" uid="uid://dhvh2qseleeob" path="res://camera_1.gd" id="1_qajn3"]
+[ext_resource type="PackedScene" uid="uid://d2kyvqd4dpeoh" path="res://control.tscn" id="2_e1emb"]
+[ext_resource type="Shader" uid="uid://cv7hfm5duhalc" path="res://addons/crt/crt.gdshader" id="3_aulpy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgm8g"]
+shader = ExtResource("3_aulpy")
+shader_parameter/resolution = Vector2(1080, 720)
+shader_parameter/scan_line_amount = 0.835
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.03
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.09
+shader_parameter/vignette_amount = 0.694
+shader_parameter/vignette_intensity = 0.379
+shader_parameter/aberation_amount = 0.335
+shader_parameter/roll_line_amount = 0.353
+shader_parameter/roll_speed = -3.894
+shader_parameter/pixel_strength = -2.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aulpy"]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2(576, 324)
+script = ExtResource("1_qajn3")
+
+[node name="Control" parent="." instance=ExtResource("2_e1emb")]
+offset_left = -578.0
+offset_top = -322.0
+offset_right = -578.0
+offset_bottom = -322.0
+
+[node name="ColorRect" type="Sprite2D" parent="."]
+visible = false
+light_mask = 512
+visibility_layer = 512
+z_index = 11
+material = SubResource("ShaderMaterial_dgm8g")
+position = Vector2(2, 0.999992)
+scale = Vector2(2.54688, 1.62109)
+texture = SubResource("NoiseTexture2D_aulpy")

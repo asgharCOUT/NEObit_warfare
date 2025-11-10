@@ -1,18 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxhjh610phvun"]
+[gd_scene load_steps=8 format=3 uid="uid://nc13qkvh44n8"]
 
-[ext_resource type="Script" uid="uid://dxrywcfjj5wf0" path="res://units/test_unit.gd" id="1_mt7jn"]
-[ext_resource type="Texture2D" uid="uid://bvc0wrt80v342" path="res://assets/first_unit1.png" id="2_jxn8b"]
-[ext_resource type="Texture2D" uid="uid://cibxygbvsomtx" path="res://assets/first_unit2.png" id="3_hgjoe"]
-[ext_resource type="Texture2D" uid="uid://cfptssg3sspig" path="res://icon.svg" id="4_hgjoe"]
+[ext_resource type="Script" uid="uid://c11lrniyybnth" path="res://units/worker_test.gd" id="1_5wgk8"]
+[ext_resource type="Texture2D" uid="uid://bvc0wrt80v342" path="res://assets/first_unit1.png" id="2_xfh2f"]
+[ext_resource type="Texture2D" uid="uid://cibxygbvsomtx" path="res://assets/first_unit2.png" id="3_lclv8"]
+[ext_resource type="Texture2D" uid="uid://cfptssg3sspig" path="res://icon.svg" id="4_087sh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w2aj3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_jxn8b")
+"texture": ExtResource("2_xfh2f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_hgjoe")
+"texture": ExtResource("3_lclv8")
 }],
 "loop": true,
 "name": &"default",
@@ -24,9 +24,9 @@ size = Vector2(27, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgjoe"]
 
-[node name="test unit" type="CharacterBody2D"]
+[node name="worker" type="CharacterBody2D" groups=["unit"]]
 position = Vector2(0, -7)
-script = ExtResource("1_mt7jn")
+script = ExtResource("1_5wgk8")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -39,6 +39,7 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_jxn8b")
 
 [node name="Button" type="Button" parent="."]
+visible = false
 modulate = Color(0.45098, 0.45098, 0.45098, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -62,7 +63,7 @@ shape = SubResource("RectangleShape2D_hgjoe")
 [node name="Icon" type="Sprite2D" parent="hit box"]
 position = Vector2(23, -1)
 scale = Vector2(0.155, 0.155)
-texture = ExtResource("4_hgjoe")
+texture = ExtResource("4_087sh")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="area_entered" from="hit box" to="." method="_on_hit_box_area_entered"]

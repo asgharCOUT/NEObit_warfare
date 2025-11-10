@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://nl6m7841qyf6"]
+
+[ext_resource type="Script" uid="uid://buk2urx7wkd3l" path="res://building/ress/ress.gd" id="1_kouf6"]
+[ext_resource type="Texture2D" uid="uid://pjk4q5bhl5l1" path="res://assets/clay.png" id="1_o5mmk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kouf6"]
+size = Vector2(42, 42)
+
+[node name="tree" type="Node2D"]
+script = ExtResource("1_kouf6")
+amount = 500
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_o5mmk")
+
+[node name="Area2D" type="Area2D" parent="." groups=["ress"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_kouf6")

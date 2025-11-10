@@ -3,15 +3,15 @@ extends Node2D
 var building :bool = true
 
 var info_view : bool = false
-
+var clay:int =0
 var inf_position: Vector2i
 var placed:bool = false
-
+var can_be_build: bool=true
 
 func _process(delta: float) -> void:
 	if building:
 		global_position = get_global_mouse_position()
-		if Input.is_action_just_pressed("leftcc"):
+		if can_be_build and Input.is_action_just_pressed("leftcc"):
 			inf_position = get_parent().tile_center
 			building = false
 	else:
@@ -22,7 +22,8 @@ func _process(delta: float) -> void:
 			$info.visible = false
 		else:
 			$info.visible = true
-		 
+	if health <= 0:
+		queue_free()
 
 
 
@@ -31,18 +32,40 @@ func _process(delta: float) -> void:
 
 
 func _on_view_info_pressed() -> void:
+	
+	
+	
 	if !building:
 		if info_view == false:
 			var buildings = get_tree().get_nodes_in_group("buildings")
 			for offbb in buildings:
-				offbb.info_view = false
+				offbb.get_parent().info_view = false
 			info_view = true
 			
 		else:
 			
 			info_view = false
 	
-
+func clay_recived():
+	get_parent().clay_added()
 
 func _on_sell_pressed() -> void:
+	get_parent().clays-= clay
 	queue_free()
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	can_be_build = false
+	
+
+
+func _on_hurtbox_body_exited(body: Node2D) -> void:
+	can_be_build = true
+	
+
+const WORKER_TEST = preload("res://units/worker_test.tscn")
+func _on_button_pressed() -> void:
+	var inst = WORKER_TEST.instantiate()
+	inst.global_position = $info/Button.global_position
+	inst.base_building = "clay_building"
+	get_parent().get_parent().add_child(inst)
