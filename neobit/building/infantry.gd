@@ -1,13 +1,14 @@
 extends Node2D
 @export var health:int = 100
 var building :bool = true
-
+var ID :int
 var info_view : bool = false
 var clay:int =0
 var inf_position: Vector2i
 var placed:bool = false
 var can_be_build: bool=true
-
+func _ready() -> void:
+	ID = randi_range(0,10000)
 func _process(delta: float) -> void:
 	if building:
 		global_position = get_global_mouse_position()
@@ -50,6 +51,14 @@ func clay_recived():
 	get_parent().clay_added()
 
 func _on_sell_pressed() -> void:
+	var our_units = get_tree().get_nodes_in_group("unit")
+	for un in our_units:
+		if un.get_parent().ID == ID:
+			un.get_parent().queue_free()
+		else:
+			pass
+	
+	
 	get_parent().clays-= clay
 	queue_free()
 
@@ -66,6 +75,7 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 const WORKER_TEST = preload("res://units/worker_test.tscn")
 func _on_button_pressed() -> void:
 	var inst = WORKER_TEST.instantiate()
-	inst.global_position = $info/Button.global_position
+	inst.ID = ID
+	inst.global_position = $info/Button.global_position + Vector2(10,0)
 	inst.base_building = "clay_building"
 	get_parent().get_parent().add_child(inst)

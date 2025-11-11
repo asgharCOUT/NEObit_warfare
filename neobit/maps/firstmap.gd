@@ -4,6 +4,7 @@ var tile_pos
 var tile_center
 var clays :int = 0
 var storage
+
 func clay_added():
 	for i in storage:
 		clays = i.get_parent().clay
