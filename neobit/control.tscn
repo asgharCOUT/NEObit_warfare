@@ -19,4 +19,16 @@ offset_bottom = 73.0
 icon = ExtResource("2_qtu10")
 expand_icon = true
 
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 965.0
+offset_right = 1151.0
+offset_bottom = 642.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 187.0
+offset_bottom = 52.0
+
 [connection signal="pressed" from="infantry)house" to="." method="_on_infantryhouse_pressed"]
