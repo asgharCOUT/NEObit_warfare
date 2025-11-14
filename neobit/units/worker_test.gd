@@ -16,7 +16,8 @@ var diraction : Vector2
 var base_building 
 var buildings :Array
 func _ready() -> void:
-	target = get_tree().get_first_node_in_group("clay")
+	
+	target = ress_target
 	speed = max_speed
 	buildings = get_tree().get_nodes_in_group("clay_building")
 	for bb in buildings:
@@ -25,9 +26,9 @@ func _ready() -> void:
 			
 		else:
 			pass
-	make_path()
+	#make_path()
 func _physics_process(delta: float) -> void:
-	print(delta)
+	#print(delta)
 	#------------------------animation------------------#
 	if caring_ress > 0 and !gadering:
 		$Sprite2D.play("caring")
@@ -64,19 +65,21 @@ func _physics_process(delta: float) -> void:
 			if target.get_parent().building == false and gadering == false:
 				#----------------moving to building---------------------
 				#$NavigationAgent2D.target_position = target.global_position
-				if !$NavigationAgent2D.is_target_reached():
-					var nav_point = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-					global_position = global_position + nav_point * speed * delta
+				#if !$NavigationAgent2D.is_target_reached():
+					#var nav_point = to_local($NavigationAgent2D.get_next_path_position()).normalized()
+					#global_position = global_position + nav_point * speed * delta
+					global_position = global_position.move_toward(target.global_position,speed * delta)
 					
 				
 			else:
 				pass
 		else:#-----------------------movin to ress
 			if target:#$NavigationAgent2D.target_position = target.global_position
-				if !$NavigationAgent2D.is_target_reached():
-					var nav_point = to_local($NavigationAgent2D.get_next_path_position()).normalized()
-					global_position = global_position + nav_point * speed * delta
+				#if !$NavigationAgent2D.is_target_reached():
+					#var nav_point = to_local($NavigationAgent2D.get_next_path_position()).normalized()
+					#global_position = global_position + nav_point * speed * delta
 					#velocity = nav_point * speed
+					global_position = global_position.move_toward(target.global_position,speed * delta)
 
 func attack():
 	pass
@@ -84,15 +87,15 @@ func finding_building():
 	target = get_tree().get_first_node_in_group(base_building)
 	if !target == null:
 		pass
-func make_path():
-	
-	$NavigationAgent2D.target_position = target.global_position
+#func make_path():
+	#
+	#$NavigationAgent2D.target_position = target.global_position
 	
 
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	print("detect house")
+	#print("detect house")
 	if area.is_in_group("ress") and caring_ress <= 0:
 		gadering = true
 		await get_tree().create_timer(3).timeout
@@ -100,20 +103,21 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 			
 			caring_ress += 10
 			target = base_building
-			make_path()
+			#make_path()
 			target_is_building = true
 			gadering = false
 		else:
-			target = get_tree().get_first_node_in_group("clay")
+			#target = get_tree().get_first_node_in_group("clay")
+			target = ress_target
 	if area.is_in_group("clay_building") and area.get_parent().building == false and caring_ress > 0:
 		
 		
 		caring_ress -= 10
 		area.get_parent().clay += 10
 		area.get_parent().clay_recived()
-		target = get_tree().get_first_node_in_group("clay")
+		target = ress_target
 		target_is_building = false
-		make_path()
+		#make_path()
 		
 
 

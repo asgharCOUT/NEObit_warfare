@@ -180,7 +180,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_w2aj3")
 animation = &"gadering"
 autoplay = "gadering"
-frame_progress = 0.221636
+frame_progress = 0.169529
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jxn8b")
@@ -196,12 +196,6 @@ shape = SubResource("RectangleShape2D_hgjoe")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-navigation_layers = 3
-path_postprocessing = 1
-debug_enabled = true
-debug_path_custom_color = Color(1, 0.231373, 0, 1)
 
 [connection signal="area_entered" from="hit box" to="." method="_on_hit_box_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

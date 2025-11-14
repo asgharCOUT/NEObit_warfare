@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpskdo65vookj"]
+[gd_scene load_steps=9 format=3 uid="uid://cpskdo65vookj"]
 
 [ext_resource type="Script" uid="uid://bq8q1rebngvq8" path="res://building/infantry.gd" id="1_0gdnp"]
 [ext_resource type="Texture2D" uid="uid://cjafiskpx4d6x" path="res://assets/house.png" id="2_spw2d"]
 [ext_resource type="Texture2D" uid="uid://cf13ctn0goovs" path="res://assets/sell.png" id="3_spw2d"]
 [ext_resource type="Texture2D" uid="uid://bvc0wrt80v342" path="res://assets/first_unit1.png" id="4_opcwq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opcwq"]
+size = Vector2(112, 112)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0gdnp"]
 
@@ -16,6 +19,18 @@ size = Vector2(16, 13.3333)
 [node name="Infantry" type="Node2D"]
 scale = Vector2(3, 3)
 script = ExtResource("1_0gdnp")
+
+[node name="choos" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choos"]
+shape = SubResource("RectangleShape2D_opcwq")
+
+[node name="view_panel" type="Panel" parent="choos"]
+modulate = Color(0, 1, 0, 0.333333)
+offset_left = -56.0
+offset_top = -55.6667
+offset_right = 56.0
+offset_bottom = 56.3333
 
 [node name="house" type="Sprite2D" parent="."]
 texture = ExtResource("2_spw2d")
@@ -66,6 +81,8 @@ expand_icon = true
 position = Vector2(0, 1.58946e-07)
 shape = SubResource("RectangleShape2D_0gdnp")
 
+[connection signal="area_entered" from="choos" to="." method="_on_choos_area_entered"]
+[connection signal="area_exited" from="choos" to="." method="_on_choos_area_exited"]
 [connection signal="pressed" from="view_info" to="." method="_on_view_info_pressed"]
 [connection signal="pressed" from="info/sell" to="." method="_on_sell_pressed"]
 [connection signal="pressed" from="info/Button" to="." method="_on_button_pressed"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://cmnyh7h6e3dct"]
+[gd_scene load_steps=10 format=4 uid="uid://cmnyh7h6e3dct"]
 
 [ext_resource type="PackedScene" uid="uid://q82aei4ngti6" path="res://maps/simplelayer.tscn" id="1_plyhv"]
 [ext_resource type="Script" uid="uid://ii8xt0ntaf0b" path="res://maps/firstmap.gd" id="1_s57b4"]
 [ext_resource type="Texture2D" uid="uid://cgoqaje708syy" path="res://assets/bush.png" id="5_axse2"]
 [ext_resource type="PackedScene" uid="uid://nl6m7841qyf6" path="res://building/ress/clay.tscn" id="5_n02kg"]
 [ext_resource type="PackedScene" uid="uid://c4cqvdiuomxrm" path="res://camera1.tscn" id="5_wuju7"]
+[ext_resource type="PackedScene" uid="uid://dm61hsxuk5du3" path="res://building/townhall.tscn" id="6_wuju7"]
+[ext_resource type="PackedScene" uid="uid://euq70kc34h5o" path="res://units/enemy/enemy_test.tscn" id="7_n02kg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_axse2"]
 
@@ -21,7 +23,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAA
 [node name="Camera2D" parent="." instance=ExtResource("5_wuju7")]
 
 [node name="tree" parent="." instance=ExtResource("5_n02kg")]
-position = Vector2(817, 382)
+position = Vector2(848, 368)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 476.0
@@ -30,10 +32,10 @@ offset_right = 516.0
 offset_bottom = 30.0
 
 [node name="tree2" parent="." instance=ExtResource("5_n02kg")]
-position = Vector2(754, 431)
+position = Vector2(400, 143)
 
 [node name="tree3" parent="." instance=ExtResource("5_n02kg")]
-position = Vector2(695, 434)
+position = Vector2(913, 540)
 
 [node name="tree4" parent="." instance=ExtResource("5_n02kg")]
 position = Vector2(634, 440)
@@ -41,3 +43,21 @@ position = Vector2(634, 440)
 [node name="Bush" type="Sprite2D" parent="."]
 position = Vector2(592, 465)
 texture = ExtResource("5_axse2")
+
+[node name="townhall" parent="." instance=ExtResource("6_wuju7")]
+position = Vector2(480, 320)
+
+[node name="Node2D" parent="." instance=ExtResource("7_n02kg")]
+position = Vector2(101, 527)
+
+[node name="Node2D2" parent="." instance=ExtResource("7_n02kg")]
+position = Vector2(69, 480)
+
+[node name="Node2D3" parent="." instance=ExtResource("7_n02kg")]
+position = Vector2(900, 383)
+
+[node name="Node2D4" parent="." instance=ExtResource("7_n02kg")]
+position = Vector2(884, 95)
+
+[node name="Node2D5" parent="." instance=ExtResource("7_n02kg")]
+position = Vector2(473, 66)

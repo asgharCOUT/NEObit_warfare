@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://euq70kc34h5o"]
+
+[ext_resource type="Script" uid="uid://mx3k6oi37x8y" path="res://enemy1_test.gd" id="1_q1hsw"]
+[ext_resource type="Texture2D" uid="uid://bvc0wrt80v342" path="res://assets/first_unit1.png" id="2_rmyjg"]
+[ext_resource type="Texture2D" uid="uid://cibxygbvsomtx" path="res://assets/first_unit2.png" id="3_hwhi5"]
+[ext_resource type="Texture2D" uid="uid://chm5f3xq2ctoi" path="res://assets/first_unit3.png" id="4_5akpb"]
+[ext_resource type="Texture2D" uid="uid://d0aafijjiueni" path="res://assets/first_unit4.png" id="5_ukxkr"]
+[ext_resource type="Texture2D" uid="uid://b4vtkbp2anaje" path="res://assets/first_unit5.png" id="6_1cbkw"]
+[ext_resource type="Texture2D" uid="uid://cohj0tfcy07qs" path="res://assets/first_unit6.png" id="7_g0vwh"]
+[ext_resource type="Texture2D" uid="uid://ifkeqmo03ts6" path="res://assets/first_unit7.png" id="8_swop1"]
+[ext_resource type="Texture2D" uid="uid://2imtatnqybgn" path="res://assets/first_unit8.png" id="9_1o32m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1hsw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmyjg"]
+size = Vector2(130, 116)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vn51q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rmyjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hwhi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5akpb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ukxkr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1cbkw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g0vwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_swop1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1o32m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_q1hsw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q1hsw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rmyjg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_vn51q")
+frame_progress = 0.453158
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="nav" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

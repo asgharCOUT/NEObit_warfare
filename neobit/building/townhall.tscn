@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm61hsxuk5du3"]
+
+[ext_resource type="Texture2D" uid="uid://c2lhg3jyq76so" path="res://assets/townhall.png" id="1_dky0p"]
+[ext_resource type="Script" uid="uid://bnnm8i0mer8op" path="res://building/townhall.gd" id="1_trlmu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trlmu"]
+size = Vector2(64, 57)
+
+[node name="townhall" type="Node2D"]
+script = ExtResource("1_trlmu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dky0p")
+
+[node name="Area2D" type="Area2D" parent="." groups=["maintown"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_trlmu")

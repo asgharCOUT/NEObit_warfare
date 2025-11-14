@@ -13,7 +13,9 @@ amount = 1000
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_o5mmk")
 
-[node name="Area2D" type="Area2D" parent="." groups=["ress"]]
+[node name="Area2D" type="Area2D" parent="." groups=["clay", "ress"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_kouf6")
+debug_color = Color(0, 0.646089, 0.245371, 0.42)
