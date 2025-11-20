@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://euq70kc34h5o"]
+
+[ext_resource type="Script" uid="uid://mx3k6oi37x8y" path="res://enemy1_test.gd" id="1_q1hsw"]
+[ext_resource type="Texture2D" uid="uid://713hr1bh5frq" path="res://assets/virus_one.png" id="2_nkcg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1hsw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmyjg"]
+size = Vector2(130, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkcg2"]
+size = Vector2(11, 11)
+
+[node name="enemy" type="CharacterBody2D"]
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("1_q1hsw")
+speed = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q1hsw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rmyjg")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_nkcg2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="nav" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="attack_view" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_view"]
+position = Vector2(14, 1)
+shape = SubResource("RectangleShape2D_nkcg2")
+debug_color = Color(0.996078, 0, 0.188235, 1)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="attack_view" to="." method="_on_attack_view_area_entered"]
+[connection signal="area_exited" from="attack_view" to="." method="_on_attack_view_area_exited"]

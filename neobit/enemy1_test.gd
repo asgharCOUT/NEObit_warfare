@@ -13,7 +13,13 @@ func _ready() -> void:
 
 func make_path():
 	$nav.target_position = target.global_position
-
+const DEMONDIE = preload("res://units/enemy/demon1/demondie.tscn")
+func die():
+	var diean = DEMONDIE.instantiate()
+	diean.global_position = global_position
+	add_sibling(diean)
+	
+	queue_free()
 
 func _process(delta: float) -> void:
 	if temp_tar == []:
@@ -23,7 +29,7 @@ func _process(delta: float) -> void:
 	if $nav.target_position != target.global_position:
 		make_path()
 	
-	
+	$attack_view.look_at(target.global_position)
 	
 	if !$nav.is_target_reached():
 		nav_point = to_local($nav.get_next_path_position()).normalized()
@@ -44,3 +50,13 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		
 		temp_tar.erase(area)
 		
+
+
+func _on_attack_view_area_entered(area: Area2D) -> void:
+	if area.is_in_group("BLUE"):
+		area.get_parent().health -= damage
+		die()
+
+
+func _on_attack_view_area_exited(area: Area2D) -> void:
+	pass # Replace with function body.

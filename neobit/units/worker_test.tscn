@@ -170,6 +170,7 @@ animations = [{
 size = Vector2(24, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgjoe"]
+size = Vector2(6, 13)
 
 [node name="worker" type="CharacterBody2D"]
 position = Vector2(0, -7)
@@ -188,7 +189,7 @@ shape = SubResource("RectangleShape2D_jxn8b")
 [node name="hit box" type="Area2D" parent="." groups=["unit"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit box"]
-position = Vector2(16, 0)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hgjoe")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

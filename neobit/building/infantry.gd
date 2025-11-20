@@ -1,5 +1,6 @@
 extends Node2D
-@export var health:int = 100
+@export var MAXhealth: int = 100
+var health:int = 100
 var building :bool = true
 var ID :int
 var info_view : bool = false
@@ -10,8 +11,11 @@ var inf_position: Vector2i
 var placed:bool = false
 var can_be_build: bool=true
 func _ready() -> void:
+	health = MAXhealth
 	ID = randi_range(0,10000)
 	can_be_build =false
+	
+	
 
 
 
@@ -19,32 +23,42 @@ var clay_list:Array
 
 
 
-
+var percent: float 
 func _process(delta: float) -> void:
-	if can_be_build:
-		
-		pass
+	percent = float(health) / float(MAXhealth)
+	$info/back_health/health_bar.size.x = percent * 14
+	if health <= 0:
+		queue_free()
+	#--------------build--------------------#
+	
+	if !can_be_build or there_is_maneh :
+		$house.self_modulate = "red"
 	else:
-		pass
+		$house.self_modulate = "green"
 	
-	
+	if !building:
+		$house.self_modulate = "ffffff"
 	
 	
 	if building:
 		global_position = get_parent().tile_center
-		if can_be_build and Input.is_action_just_pressed("leftcc"):
+		info_view = false
+		if can_be_build and !there_is_maneh and Input.is_action_just_pressed("leftcc"):
 			inf_position = get_parent().tile_center
 			building = false
 	else:
+		$choos/view_panel.visible = false
+		
 		global_position = inf_position
 		
 		
 		#-----------------------------------info view-------------------------------#
-	if !building:
-		if !info_view:
-			$info.visible = false
-		else:
-			$info.visible = true
+	#if !building:
+	if !info_view:
+		$info.visible = false
+	else:
+		$info.visible = true
+	
 	if health <= 0:
 		queue_free()
 	
@@ -117,3 +131,13 @@ func _on_choos_area_exited(area: Area2D) -> void:
 		clay_list.erase(area)
 		print("erased")
 		can_be_build = false
+
+var there_is_maneh: bool = false
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("ress"):
+		there_is_maneh = true
+
+
+func _on_hurtbox_area_exited(area: Area2D) -> void:
+	if area.is_in_group("ress"):
+		there_is_maneh = false

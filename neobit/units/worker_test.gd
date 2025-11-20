@@ -99,16 +99,16 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ress") and caring_ress <= 0:
 		gadering = true
 		await get_tree().create_timer(3).timeout
-		if area:
+		#if area:
 			
-			caring_ress += 10
-			target = base_building
-			#make_path()
-			target_is_building = true
-			gadering = false
-		else:
+		caring_ress += 10
+		target = base_building
+		#make_path()
+		target_is_building = true
+		gadering = false
+		#else:
 			#target = get_tree().get_first_node_in_group("clay")
-			target = ress_target
+		#target = ress_target
 	if area.is_in_group("clay_building") and area.get_parent().building == false and caring_ress > 0:
 		
 		

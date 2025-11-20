@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://cr1cbqfwutnlp"]
+
+[ext_resource type="Texture2D" uid="uid://dml0lsr031bdg" path="res://assets/demon1_die.png" id="1_lmx3y"]
+[ext_resource type="Script" uid="uid://ngaenokjumlu" path="res://units/enemy/demon1/demondie.gd" id="2_cc46m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5sy3"]
+atlas = ExtResource("1_lmx3y")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84w5q"]
+atlas = ExtResource("1_lmx3y")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bpis"]
+atlas = ExtResource("1_lmx3y")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_252q6"]
+atlas = ExtResource("1_lmx3y")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc136"]
+atlas = ExtResource("1_lmx3y")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i85tr"]
+atlas = ExtResource("1_lmx3y")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ph4k1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5sy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84w5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bpis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_252q6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc136")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i85tr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="Demondie" type="AnimatedSprite2D"]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ph4k1")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+script = ExtResource("2_cc46m")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

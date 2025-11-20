@@ -14,7 +14,7 @@ size = Vector2(112, 112)
 bg_color = Color(0, 1, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gdnp"]
-size = Vector2(16, 13.3333)
+size = Vector2(8.66667, 8.33333)
 
 [node name="Infantry" type="Node2D"]
 scale = Vector2(3, 3)
@@ -53,7 +53,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0gdnp")
 
 [node name="health_bar" type="Panel" parent="info/back_health"]
 layout_mode = 0
-offset_right = 14.0
+offset_right = 8.0
 offset_bottom = 2.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_spw2d")
 
@@ -78,7 +78,7 @@ expand_icon = true
 [node name="hurtbox" type="Area2D" parent="." groups=["BLUE", "buildings", "clay_building"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(0, 1.58946e-07)
+position = Vector2(-1.58946e-07, 0.166667)
 shape = SubResource("RectangleShape2D_0gdnp")
 
 [connection signal="area_entered" from="choos" to="." method="_on_choos_area_entered"]
@@ -86,5 +86,5 @@ shape = SubResource("RectangleShape2D_0gdnp")
 [connection signal="pressed" from="view_info" to="." method="_on_view_info_pressed"]
 [connection signal="pressed" from="info/sell" to="." method="_on_sell_pressed"]
 [connection signal="pressed" from="info/Button" to="." method="_on_button_pressed"]
-[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
-[connection signal="body_exited" from="hurtbox" to="." method="_on_hurtbox_body_exited"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="hurtbox" to="." method="_on_hurtbox_area_exited"]

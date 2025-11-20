@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nl6m7841qyf6" path="res://building/ress/clay.tscn" id="5_n02kg"]
 [ext_resource type="PackedScene" uid="uid://c4cqvdiuomxrm" path="res://camera1.tscn" id="5_wuju7"]
 [ext_resource type="PackedScene" uid="uid://dm61hsxuk5du3" path="res://building/townhall.tscn" id="6_wuju7"]
-[ext_resource type="PackedScene" uid="uid://euq70kc34h5o" path="res://units/enemy/enemy_test.tscn" id="7_n02kg"]
+[ext_resource type="PackedScene" uid="uid://euq70kc34h5o" path="res://units/enemy/demon1/enemy_test.tscn" id="7_n02kg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_axse2"]
 
@@ -48,16 +48,16 @@ texture = ExtResource("5_axse2")
 position = Vector2(480, 320)
 
 [node name="Node2D" parent="." instance=ExtResource("7_n02kg")]
-position = Vector2(101, 527)
+position = Vector2(-1431, 533)
 
 [node name="Node2D2" parent="." instance=ExtResource("7_n02kg")]
-position = Vector2(69, 480)
+position = Vector2(-1463, 486)
 
 [node name="Node2D3" parent="." instance=ExtResource("7_n02kg")]
-position = Vector2(900, 383)
+position = Vector2(-632, 389)
 
 [node name="Node2D4" parent="." instance=ExtResource("7_n02kg")]
-position = Vector2(884, 95)
+position = Vector2(-648, 101)
 
 [node name="Node2D5" parent="." instance=ExtResource("7_n02kg")]
-position = Vector2(473, 66)
+position = Vector2(-1059, 72)
